@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import {Navbar} from 'react-bootstrap'
+import {connect} from 'react-redux'
+import {fetchCats} from './actions/catActions'
 
 class App extends Component {   
+
+  componentDidMount(){
+    this.props.fetchCats()
+  }
   
   render() {
     return (
@@ -18,7 +24,11 @@ class App extends Component {
   }
 }
 
+let mapStateToProps = (state) => ({catPics: state.pictures})
 
+// let mapDispatchToProps = (dispatch) => ({
+//   fetchCats: fetchCats
+// })
 
-export default App
+export default connect(mapStateToProps, {fetchCats})(App)
 
