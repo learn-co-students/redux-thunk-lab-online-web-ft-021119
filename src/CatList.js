@@ -2,18 +2,16 @@ import React, { Component } from 'react'
 
 export default class CatList extends Component {
 
-  render () {
-    debugger
-  const cats = this.props;
-  const catList = cats.map(cat => {
-    return (
-      <img key={cat.id} url={cat.url} />
-    )
-  });
+  renderCats = () => {
+    if (!!this.props.catPics) {
+      return this.props.catPics.map(cat => <img src={cat.url} key={cat.id} />)
+    }
+  }
 
+  render () {
     return (
       <div>
-        {catList}
+        {this.renderCats()}
       </div>
     )
   }

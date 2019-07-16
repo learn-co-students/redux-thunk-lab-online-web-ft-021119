@@ -1,21 +1,10 @@
-export const fetchCats = () => {
+export function fetchCats() {
   return (dispatch) => {
     dispatch({type: "LOADING_CATS"})
     return fetch('http://localhost:4000/db')
-      .then(resp => {
-        return resp.json()})
-      .then(respJSON => {
-        return respJSON.images
-      })
+      .then(resp => resp.json())
       .then(cats => {
-        return({type: "FETCH_CATS", payload: cats})
+        return dispatch({type: "FETCH_CATS", payload: cats.images})
       })
   }
 }
-
-
-// fetch('http://localhost:4000/db').then(response => {
-//   return response.json()
-// }).then(responseJSON => {
-//   return responseJSON.images
-// })
